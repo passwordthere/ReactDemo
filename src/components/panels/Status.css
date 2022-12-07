@@ -1,0 +1,16 @@
+.Left {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1%;
+}
+
+.Right {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1%;
+}

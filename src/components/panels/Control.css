@@ -1,0 +1,27 @@
+.Control {
+    height: 100%;
+    background: #31363a;
+    display: flex;
+    justify-content: center;
+}
+
+.LeftControl {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.MidControl {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.RightControl {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

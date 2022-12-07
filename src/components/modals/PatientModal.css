@@ -1,0 +1,46 @@
+.PatientModal {
+    width: 100%;
+    background: #31363a;
+    color: #CECECE;
+    padding: 2rem;
+    font-size: 1.6rem;
+}
+
+.PatientModalHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.PatientModalBody {
+    padding: 4rem 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.PatientCancel {
+    border: 1px solid rgb(70, 140, 250);
+    border-radius: 2rem;
+    padding: 0.5rem 4rem;
+    font-size: 1.6rem;
+    /*font-weight: 600;*/
+    cursor: pointer;
+    color: rgb(70,140,250)
+}
+
+.PatientConfirm {
+    background: rgb(70, 140, 250);
+    border: 1px solid rgb(70, 140, 250);
+    border-radius: 2rem;
+    padding: 0.5rem 4rem;
+    font-size: 1.6rem;
+    /*font-weight: 600;*/
+    cursor: pointer;
+    color: #fff
+}

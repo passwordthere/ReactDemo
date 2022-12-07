@@ -1,0 +1,34 @@
+.message {
+    position: fixed;
+    font-size: 1.4rem;
+    left: 50%;
+    top: 30px;
+    transform: translate3d(-50%, 0, 0);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    animation: move 0.3s;
+    list-style: none;
+}
+.error {
+  background: #f9ebeb;
+  color: #c2433a;
+}
+.success {
+  background: #ebf9ec;
+  color: #67c23a;
+}
+.warning {
+  background: #f8f9eb;
+  color: #c5b03b;
+}
+@keyframes move {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  100% {
+    top: 30px;
+    opacity: 1;
+  }
+}
+  

@@ -1,0 +1,33 @@
+.Home {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 120px 1fr;
+    grid-gap: 10px;
+}
+
+.StatusPanel {
+    height: 100%;
+    background: #31363a;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 10px;
+}
+
+.Wrapper1 {
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+    grid-gap: 10px;
+}
+
+.WrapperPreview {
+    height: 100%;
+}
