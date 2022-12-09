@@ -3,15 +3,15 @@ import {useEffect, useState} from "react";
 const StatusButton = ({text, handleClick, current, finished, round}) => {
     const defaultStyle = {
         display: "inline-block",
-        color: "#fff",
+        color: "#cecece",
         boxSizing: "border-box",
         padding: round ? '1rem 6rem' : "1rem 2rem",
-        background: "#333",
+        // background: "#333",
         borderRadius: round ? "3rem" : "0.5rem",
         textAlign: "center",
         fontSize: round ? "2rem" : "1.6rem",
         fontWeight: "300",
-        border: '1px solid #fff',
+        border: '1px solid #cecece',
     }
     const [hover, setHover] = useState(false)
     const [style, setStyle] = useState(defaultStyle)

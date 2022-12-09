@@ -28,6 +28,52 @@ export function CreatePatientAPI(data) {
     return res
 }
 
+// STATUS
+export function LocateAPI(params) {
+    let res = Axios({
+        url: '/start_locate/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
+export function SurfaceAPI(params) {
+    let res = Axios({
+        url: '/surface/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
+export function ProptosisAPI(params) {
+    let res = Axios({
+        url: '/proptosis/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
+export function WidthAPI(params) {
+    let res = Axios({
+        url: '/width_redness/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
+export function RotationAPI(params) {
+    let res = Axios({
+        url: '/rotation/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
 export function RatingAPI(params) {
     let res = Axios({
         url: '/rating/',

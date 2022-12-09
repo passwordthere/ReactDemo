@@ -10,6 +10,24 @@ import PatientModal from "../modals/PatientModal";
 const Nav = ({history, currentNav, setCurrentNav}) => {
     const [hover, setHover] = useState(false)
 
+    const handle_home = () => {
+        setCurrentNav('home')
+    }
+    const handle_search = () => {
+        setCurrentNav('search')
+    }
+    const handle_patient = () => {
+        setCurrentNav('patient')
+        showModal()
+    }
+
+    // Modal Dialog
+    const [modalVisible, setModalVisible] = useState(false)
+    const showModal = () => setModalVisible(true)
+    const hideModal = () => setModalVisible(false)
+    // User Logout
+    const mouse_enter = () => setHover(true)
+    const mouse_leave = () => setHover(false)
     const handle_logout = async () => {
         const cookies = new Cookies();
         await cookies.remove('accessToken', {path: '/'})
@@ -20,27 +38,6 @@ const Nav = ({history, currentNav, setCurrentNav}) => {
         window.location.reload();
     }
 
-    const handle_home = () => {
-        setCurrentNav('home')
-    }
-    const handle_search = () => {
-        setCurrentNav('search')
-    }
-    const handle_patient = () => {
-        showModal()
-    }
-
-    // Modal Dialog
-    const [modalVisible, setModalVisible] = useState(false)
-    const showModal = () => setModalVisible(true)
-    const hideModal = () => setModalVisible(false)
-
-    const mouse_enter = () => {
-        setHover(true)
-    }
-    const mouse_leave = () => {
-        setHover(false)
-    }
     return (
         <div className='Nav'>
             <div className='LogoAndButtons'>

@@ -13,39 +13,24 @@
     height: 100%;
 }
 
-.CameraOD {
-    background: yellow;
+.CameraODOS {
     height: 100%;
+    background: #000;
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.CameraOS {
-    background: yellowgreen;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.CameraODHeader {
+.CameraODOSHeader {
     position: absolute;
     padding: 1rem;
     font-size: 1.6rem;
     top: 2px;
     font-weight: 600;
+    z-index: 5;
 }
 
-.CameraOSHeader {
-    position: absolute;
-    padding: 1rem;
-    font-size: 1.6rem;
-    top: 2px;
-    font-weight: 600;
-}
-
-.CameraODContent {
+.CameraODOSContent {
     width: 100%;
     transform: translateZ(0);
 }

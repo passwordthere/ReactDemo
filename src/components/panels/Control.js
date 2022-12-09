@@ -4,8 +4,8 @@ import {StepBackwardOutlined, StepForwardOutlined} from '@ant-design/icons';
 import {Message} from "../../utils/message";
 import {useEffect, useState} from "react";
 
-const Control = ({currentStatus, setCurrentStatus}) => {
-    const statusList = ['locating', 'surface', 'proptosis', 'width', 'rotation', 'rating', 'report']
+const Control = ({currentStatus, setCurrentStatus, eventTakingPhoto}) => {
+    const statusList = ['locate', 'surface', 'proptosis', 'width', 'rotation', 'rating', 'report']
     const [index, setIndex] = useState(0)
 
     useEffect(() => setIndex(statusList.indexOf(currentStatus)), [currentStatus])
@@ -32,7 +32,7 @@ const Control = ({currentStatus, setCurrentStatus}) => {
             </div>
 
             <div className='MidControl'>
-                <Button className="rounded-circle" style={{padding: '40px', fontSize: '2.8rem'}}>拍摄</Button>
+                <Button onClick={eventTakingPhoto} className="rounded-circle" style={{padding: '40px', fontSize: '2.8rem'}}>拍摄</Button>
             </div>
 
             <div className='RightControl'>
