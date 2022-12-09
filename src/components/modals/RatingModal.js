@@ -2,7 +2,6 @@ import Modal from 'react-bootstrap/Modal';
 import './RatingModal.css'
 import {useEffect, useState} from "react";
 import {RatingAPI} from "../../api";
-import {Message} from "../../utils/message";
 import RatingButtonPair from "../common/RatingButtonPair";
 
 const RatingModal = ({show, hide, handleReport}) => {

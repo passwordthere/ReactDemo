@@ -29,6 +29,15 @@ export function CreatePatientAPI(data) {
 }
 
 // STATUS
+export function ChangeStatusAPI(params) {
+    let res = Axios({
+        url: '/change_step/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
 export function LocateAPI(params) {
     let res = Axios({
         url: '/start_locate/',

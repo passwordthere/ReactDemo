@@ -1,10 +1,9 @@
 import './Preview.css'
-import black from '../../assets/image/black.png'
 import {BulbOutlined} from '@ant-design/icons';
 import PreviewWindow from "../common/PreviewWindow";
 import {useState} from "react";
 
-const Preview = ({currentStatus}) => {
+const Preview = ({currentStatus, currentPreviewImg}) => {
     const [selectedNum, setSelectedNum] = useState(1)
 
     return (
@@ -12,7 +11,7 @@ const Preview = ({currentStatus}) => {
             <div className='ODOSPreview'>
                 <div className='ODOSPreviewHeader'>OD</div>
                 <div className='ODOSPreviewContent' onClick={() => setSelectedNum(1)}>
-                    <PreviewWindow selected={selectedNum === 1} />
+                    <PreviewWindow src={currentPreviewImg[0]} selected={selectedNum === 1} />
                     {/*<img style={{width: '100%', height: '100%'}} src={black} />*/}
                     {/*<div style={{background: 'black', width: '100%', height: '100%'}}/>*/}
                 </div>
@@ -20,7 +19,7 @@ const Preview = ({currentStatus}) => {
             <div className='ODOSPreview'>
                 <div className='ODOSPreviewHeader'>OS</div>
                 <div className='ODOSPreviewContent'  onClick={() => setSelectedNum(2)}>
-                    <PreviewWindow selected={selectedNum === 2} />
+                    <PreviewWindow src={currentPreviewImg[1]} selected={selectedNum === 2} />
                     {/*<img style={{width: '100%', height: '100%'}} src={black} />*/}
                     {/*<div style={{background: 'black', width: '100%', height: '100%'}}/>*/}
                 </div>

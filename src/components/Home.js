@@ -6,33 +6,34 @@ import Control from "./panels/Control";
 import ControlLocate from "./panels/ControlLocate";
 import Preview from "./panels/Preview";
 import Report from "./panels/Report";
-import {LocateAPI, ProptosisAPI, ReportAPI, SurfaceAPI} from "../api";
+import {ChangeStatusAPI, LocateAPI, ProptosisAPI, ReportAPI, SurfaceAPI, WidthAPI} from "../api";
 
 const Home = () => {
     const [currentStatus, setCurrentStatus] = useState('locate')    // locate, surface, proptosis, width, rotation, rating, report
     const [finishedStatus, setFinishedStatus] = useState([])
 
     // result of backend
-    const [locateImg, setLocateImg] = useState(null)
-    const [surfaceImg, setSurfaceImg] = useState(null)
-    const [proptosisImg, setProptosisImg] = useState(null)
-    const [proptosisRet, setProptosisRet] = useState(null)
-    const [widthImg, setWidthImg] = useState(null)
-    const [widthRet, setWidthRet] = useState(null)
-    const [rednessImg, setRednessImg] = useState(null)
-    const [rednessRet, setRednessRet] = useState(null)
-    const [rotationImg, setRotationImg] = useState(null)
-    const [rotationPlot, setRotationPlot] = useState(null)
+    const [locateImg, setLocateImg] = useState([null, null])
+    const [surfaceImg, setSurfaceImg] = useState([null, null])
+    const [proptosisImg, setProptosisImg] = useState([null, null])
+    const [proptosisRet, setProptosisRet] = useState([null, null])
+    const [widthImg, setWidthImg] = useState([null, null])
+    const [widthRet, setWidthRet] = useState([null, null])
+    const [rednessImg, setRednessImg] = useState([null, null])
+    const [rednessRet, setRednessRet] = useState([null, null])
+    // const [rotationImg, setRotationImg] = useState(null)
+    // const [rotationPlot, setRotationPlot] = useState(null)
     const [report, setReport] = useState(null)
 
     const [currentPreviewImg, setCurrentPreviewImg] = useState(locateImg)
+    useEffect(() => console.log(currentPreviewImg),[currentPreviewImg])
 
     useEffect(() => eventChangingStatus(), [currentStatus])
     const eventChangingStatus = () => {
+        ChangeStatusAPI({step: currentStatus})
         switch (currentStatus) {
             case 'locate':
                 console.log('locate')
-                // ChangeStatusAPI
                 setCurrentPreviewImg(locateImg)
                 break
             case 'surface':
@@ -49,11 +50,11 @@ const Home = () => {
                 break
             case 'rotation':
                 console.log('rotation')
-                setCurrentPreviewImg(rotationImg)
+                // setCurrentPreviewImg(rotationImg)
                 break
-            case 'rating':
-                console.log('rating')
-                break
+            // case 'rating':
+            //     console.log('rating')
+            //     break
             case 'report':
                 console.log('report')
                 ReportAPI().then(res => setReport(res.data.pdf))
@@ -64,7 +65,10 @@ const Home = () => {
         switch (currentStatus) {
             case 'locate':
                 console.log('locate')
-                LocateAPI().then(res => setLocateImg(res.data.img))
+                LocateAPI().then(res => {
+                    setLocateImg(res.data.img)
+                    setCurrentPreviewImg(res.data.img)
+                })
                 break
             case 'surface':
                 console.log('surface');
@@ -80,6 +84,9 @@ const Home = () => {
                 break
             case 'width':
                 console.log('width');
+                // WidthAPI().then(res => {
+                //
+                // })
                 break
             case 'rotation':
                 console.log('rotation')
@@ -103,7 +110,7 @@ const Home = () => {
                 </div>
                 <div className='Wrapper2'>
                     <div className='WrapperPreview'>
-                        <Preview currentStatus={currentStatus}/>
+                        <Preview currentStatus={currentStatus} currentPreviewImg={currentPreviewImg}/>
                     </div>
                 </div>
             </div>

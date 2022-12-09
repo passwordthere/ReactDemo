@@ -1,6 +1,6 @@
 import './Status.css'
 import StatusButton from "../common/StatusButton";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import RatingModal from "../modals/RatingModal";
 
 const Status = ({currentStatus, finishedStatus, setCurrentStatus}) => {
@@ -20,7 +20,7 @@ const Status = ({currentStatus, finishedStatus, setCurrentStatus}) => {
         setCurrentStatus('rotation')
     }
     const handleRating = () => {
-        setCurrentStatus('rating')
+        // setCurrentStatus('rating')
         showModal()
     }
     const handleReport = () => {

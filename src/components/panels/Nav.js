@@ -17,7 +17,7 @@ const Nav = ({history, currentNav, setCurrentNav}) => {
         setCurrentNav('search')
     }
     const handle_patient = () => {
-        setCurrentNav('patient')
+        // setCurrentNav('patient')
         showModal()
     }
 

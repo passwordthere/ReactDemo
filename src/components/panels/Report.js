@@ -15,7 +15,7 @@ const Report = ({report}) => {
         <div className='Report'>
             {ready ? (
                 <div className='ReportMain'>
-                    <iframe src={Links().media + report + '#view=FitV&toolbar=0'} height={'100%'} width={'100%'}/>
+                    <iframe src={Links().media + report + '#view=FitV&toolbar=0'} title={'Report'} height={'100%'} width={'100%'}/>
                 </div>
             ) : (
                 <div className='ReportLoading'>
