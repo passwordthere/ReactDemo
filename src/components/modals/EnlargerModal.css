@@ -1,0 +1,32 @@
+.EnlargerModal .modal-content {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #cecece;
+    padding: 4rem;
+}
+
+.EnlargerModalHeader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /*background: red;*/
+}
+
+.EnlargerModalContent {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.EnlargerModalFooter {
+    height: 10%;
+    width: 50%;
+    display: flex;
+    gap: 0.5rem;
+    align-self: center;
+}

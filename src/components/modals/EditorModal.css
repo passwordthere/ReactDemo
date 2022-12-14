@@ -1,0 +1,39 @@
+.EditorModal {
+    width: 100%;
+    height: 100%;
+    background: #31363a;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #CECECE;
+}
+
+.EditorModalHeader {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 2px;
+}
+
+.EditorModalContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.EditorModalContentLeft {
+    width: 70%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.EditorModalContentRight {
+    width: 30%;
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

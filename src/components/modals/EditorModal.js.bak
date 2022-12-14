@@ -1,0 +1,150 @@
+import Modal from 'react-bootstrap/Modal';
+import './EditorModal.css'
+import {CaretLeftOutlined, CaretRightOutlined} from "@ant-design/icons";
+import BootstrapRoundButton from "../common/BootstrapRoundButton";
+import {Circle, Image, Layer, Line, Stage} from 'react-konva';
+import useImage from "use-image";
+import Links from "../../Links";
+import {useEffect, useReducer, useRef, useState} from "react";
+
+const tagTitle = ['请测量距离', '请绘制面积', '请测量距离', '请绘制面积']
+const tagDes = ['请在照片上分别点击起点和终点测量宽度', '请在照片上用打点连线的方式绘制面积。鼠标左键点击及移动即可绘制图形；鼠标左键双击即可结束，会自动闭合。', '请在照片上分别点击起点和终点测量宽度', '请在照片上用打点连线的方式绘制面积。鼠标左键点击及移动即可绘制图形；鼠标左键双击即可结束，会自动闭合。']
+const tagSlide = ['OD，眼裂宽度', 'OD，结膜充血', 'OS，眼裂宽度', 'OS，结膜充血']
+
+const singleData = {
+    points: [],
+    width: 0,
+    upper: 0,
+    lower: 0,
+}
+const initialData = [singleData, singleData, singleData, singleData]
+function init() {
+    return initialData
+}
+function reducer(data, action) {
+    switch (action.type) {
+        case 'setWidth':
+            return []
+        case 'setRedness':
+            return []
+        case 'reset':
+            return init()
+        default:
+            throw new Error()
+    }
+}
+
+const EditorModal = ({show, hide}) => {
+    const stageParentNode = useRef(null)
+    const [stageWH, setStageWH] = useState([])
+    const [image] = useImage(Links().media + 'OD.jpg')
+    const [index, setIndex] = useState(0)
+    const [data, dispatch] = useReducer(reducer, initialData, init)
+
+    const [circles, setCircles] = useState([])
+    const [lines, setLines] = useState([])
+    useEffect(() => {
+        setCircles([]);
+        setLines([])
+    }, [index])    //
+
+
+    const [eyelid, setEyelid] = useState(false)
+    const [isDone, setIsDone] = useState(false)
+
+    const handleLast = () => {
+        if (index + 1 !== 1) setIndex(index - 1)
+    }
+    const handleNext = () => {
+        if (index + 1 !== 4) setIndex(index + 1)
+    }
+    const confirm = () => {
+    }
+
+    const handleClickImage = (e) => {
+        const {x, y} = e.target.getStage().getRelativePointerPosition()
+        console.log(x, y)
+
+        // Width
+        if (index === 0 || index === 2) {
+            setCircles([])
+        }
+
+        // Redness
+        else {
+            console.log('redness')
+        }
+    };
+
+    useEffect(() => {
+        setStageWH([stageParentNode.current.offsetWidth, stageParentNode.current.offsetWidth])
+    }, [])
+
+
+    return (
+        <Modal size='xl' show={show} onHide={hide} backdrop="static" keyboard={false} centered>
+            <div className='EditorModal'>
+                <div className='EditorModalHeader'>
+                    <div>
+                        手动选择照片
+                    </div>
+                    <button type="button" className="btn-close btn-close-white" aria-label="Close" onClick={hide}/>
+                </div>
+
+
+                <div style={{height: "1px", background: "#555", margin: '0 2rem'}}/>
+
+
+                <div className='EditorModalContent'>
+                    <div className='EditorModalContentLeft'>
+                        <div>{tagTitle[index]}</div>
+                        <div style={{display: 'flex'}}>
+                            <div onClick={handleLast} style={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}><CaretLeftOutlined style={{fontSize: '2.2rem'}}/></div>
+                            <div ref={stageParentNode} style={{width: '100%', height: '100%'}}>
+
+                                <Stage width={stageWH[0]} height={stageWH[1] * 1024 / 1536} style={{background: 'red'}}>
+                                    <Layer>
+                                        <Image image={image} width={stageWH[0]} height={stageWH[0] * 1024 / 1536} onClick={handleClickImage}/>
+                                        {circles.map((circle, i) => (<Circle key={i} x={circle[0]} y={circle[1]} fill={'white'} stroke={'#03a9fc'} radius={5}/>))}
+                                        {lines.map((line, i) => (<Line key={i} points={[line.from[0], line.from[1], line.to[0], line.to[1]]} stroke={'white'}/>))}
+                                    </Layer>
+                                </Stage>
+
+                            </div>
+                            <div onClick={handleNext} style={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}><CaretRightOutlined style={{fontSize: '2.2rem'}}/></div>
+                        </div>
+                        <div style={{padding: '2rem', height: '5em'}}>{tagDes[index]}</div>
+                        <div style={{display: 'flex', justifyContent: 'center', gap: '4rem', fontSize: '2rem'}}>
+                            <div>{index + 1}/4</div>
+                            <div>{tagSlide[index]}</div>
+                        </div>
+                    </div>
+
+
+                    <div style={{width: '1px', background: '#555'}}/>
+
+
+                    <div className='EditorModalContentRight'>
+                        <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px'}}>
+                            <div>眼裂宽度</div>
+                            <div>OD: {data[0].width}</div>
+                            <div>OS: {data[1].width}</div>
+                            <div>上睑退缩</div>
+                            <div>OD: {data[0].upper}</div>
+                            <div>OS: {data[1].upper}</div>
+                            <div>下睑退缩</div>
+                            <div>OD: {data[0].lower}</div>
+                            <div>OS: {data[1].lower}</div>
+                        </div>
+                        <div style={{display: 'flex', gap: '10px'}}>
+                            <BootstrapRoundButton variant='outline-primary' text='放弃绘制'/>
+                            {index + 1 === 4 ? <BootstrapRoundButton variant='primary' text='完成'/> : <BootstrapRoundButton onClick={handleNext} variant='primary' text='下一页'/>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Modal>
+    );
+};
+
+export default EditorModal

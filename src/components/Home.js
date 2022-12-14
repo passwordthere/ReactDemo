@@ -7,9 +7,13 @@ import ControlLocate from "./panels/ControlLocate";
 import Preview from "./panels/Preview";
 import Report from "./panels/Report";
 import {ChangeStatusAPI, LocateAPI, ProptosisAPI, ReportAPI, SurfaceAPI, WidthAPI} from "../api";
+import PreviewRotation from "./panels/PreviewRotation";
+import PreviewWidth from "./panels/PreviewWidth";
+
+export const statusList = ['locate', 'surface', 'proptosis', 'width', 'rotation', 'rating', 'report']
 
 const Home = () => {
-    const [currentStatus, setCurrentStatus] = useState('locate')    // locate, surface, proptosis, width, rotation, rating, report
+    const [currentStatus, setCurrentStatus] = useState(statusList[0])    // locate, surface, proptosis, width, rotation, rating, report
     const [finishedStatus, setFinishedStatus] = useState([])
 
     // result of backend
@@ -21,44 +25,46 @@ const Home = () => {
     const [widthRet, setWidthRet] = useState([null, null])
     const [rednessImg, setRednessImg] = useState([null, null])
     const [rednessRet, setRednessRet] = useState([null, null])
-    // const [rotationImg, setRotationImg] = useState(null)
-    // const [rotationPlot, setRotationPlot] = useState(null)
+    const [rotationImg, setRotationImg] = useState([[null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null]])
+    const [rotationPlot, setRotationPlot] = useState([null, null])
     const [report, setReport] = useState(null)
 
     const [currentPreviewImg, setCurrentPreviewImg] = useState(locateImg)
-    useEffect(() => console.log(currentPreviewImg),[currentPreviewImg])
 
     useEffect(() => eventChangingStatus(), [currentStatus])
     const eventChangingStatus = () => {
-        ChangeStatusAPI({step: currentStatus})
+        if (!['rating', 'report'].includes(currentStatus)) ChangeStatusAPI({step: currentStatus})
+
         switch (currentStatus) {
-            case 'locate':
+            case statusList[0]:
                 console.log('locate')
                 setCurrentPreviewImg(locateImg)
                 break
-            case 'surface':
+            case statusList[1]:
                 console.log('surface')
                 setCurrentPreviewImg(surfaceImg)
                 break
-            case 'proptosis':
+            case statusList[2]:
                 console.log('proptosis')
                 setCurrentPreviewImg(proptosisImg)
                 break
-            case 'width':
+            case statusList[3]:
                 console.log('width');
                 setCurrentPreviewImg(widthImg)
                 break
-            case 'rotation':
+            case statusList[4]:
                 console.log('rotation')
                 // setCurrentPreviewImg(rotationImg)
                 break
-            // case 'rating':
-            //     console.log('rating')
-            //     break
-            case 'report':
+            case statusList[5]:
+                console.log('rating')
+                break
+            case statusList[6]:
                 console.log('report')
                 ReportAPI().then(res => setReport(res.data.pdf))
                 break
+
+            //    no default
         }
     }
     const eventTakingPhoto = () => {
@@ -91,26 +97,38 @@ const Home = () => {
             case 'rotation':
                 console.log('rotation')
                 break
+
+            //    no default
         }
     }
+    useEffect(() => {
+        if (surfaceImg || proptosisRet || widthRet || rednessRet || rotationImg || rotationPlot) {
+            console.log('生成报告啦')
+        }
+    }, [surfaceImg, proptosisRet, widthRet, rednessRet, rotationImg, rotationPlot])
 
     return (
         <div className='Home'>
             <div className='StatusPanel'>
-                <Status currentStatus={currentStatus} finishedStatus={finishedStatus} setCurrentStatus={setCurrentStatus}/>
+                <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} finishedStatus={finishedStatus}/>
             </div>
             <div className='Wrapper'>
                 <div className='Wrapper1'>
                     <div className='WrapperCamera'>
-                        {currentStatus === 'report' ? <Report report={report} setReport={setReport}/> : <Camera/>}
+                        {currentStatus === statusList[6] ? <Report report={report} setReport={setReport}/> : <Camera/>}
                     </div>
                     <div className='WrapperControl'>
-                        {currentStatus === 'locate' ? <ControlLocate eventTakingPhoto={eventTakingPhoto}/> : <Control currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} eventTakingPhoto={eventTakingPhoto}/>}
+                        {currentStatus === statusList[0] ? <ControlLocate eventTakingPhoto={eventTakingPhoto}/> :
+                            <Control currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} eventTakingPhoto={eventTakingPhoto}/>}
                     </div>
                 </div>
                 <div className='Wrapper2'>
                     <div className='WrapperPreview'>
-                        <Preview currentStatus={currentStatus} currentPreviewImg={currentPreviewImg}/>
+                        {
+                            currentStatus === statusList[3] ? (<PreviewWidth currentStatus={currentStatus} widthImg={widthImg} rednessImg={rednessImg} />)
+                            : currentStatus === statusList[4] ? (<PreviewRotation rotationImg={rotationImg} rotationPlot={rotationPlot}/>)
+                            : (<Preview currentStatus={currentStatus} currentPreviewImg={currentPreviewImg}/>)
+                        }
                     </div>
                 </div>
             </div>

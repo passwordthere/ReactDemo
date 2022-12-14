@@ -1,6 +1,7 @@
 import black from "../../assets/image/black.png";
 import {useState} from "react";
 import Links from "../../Links";
+import baiyi from '../../assets/image/baiyi.jpg'
 
 const PreviewWindow = ({src, fontS, selected}) => {
     const [hover, setHover] = useState(false)
@@ -40,7 +41,7 @@ const PreviewWindow = ({src, fontS, selected}) => {
                 <div style={HoverTextStyle}>重拍</div>
             </div>
             <div style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center'}}>
-                <img style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto', textAlign: 'center'}} src={src ? Links().media + src : Links().media + 'baiyi.jpg'} alt='src'/>
+                <img style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto', textAlign: 'center'}} src={src ? Links().media + src : baiyi} alt='src'/>
             </div>
         </div>
     )

@@ -62,7 +62,9 @@ const StatusButton = ({text, handleClick, current, finished, round}) => {
                 })
             }
         }
-    }, [hover, current, finished, round])
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hover, current, finished])
 
     const mouse_enter = () => {
         setHover(!hover)

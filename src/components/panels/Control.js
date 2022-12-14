@@ -3,9 +3,9 @@ import Button from "react-bootstrap/Button";
 import {StepBackwardOutlined, StepForwardOutlined} from '@ant-design/icons';
 import {Message} from "../../utils/message";
 import {useEffect, useState} from "react";
+import {statusList} from "../Home";
 
 const Control = ({currentStatus, setCurrentStatus, eventTakingPhoto}) => {
-    const statusList = ['locate', 'surface', 'proptosis', 'width', 'rotation', 'rating', 'report']
     const [index, setIndex] = useState(0)
 
     useEffect(() => setIndex(statusList.indexOf(currentStatus)), [currentStatus])

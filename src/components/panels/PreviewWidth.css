@@ -1,0 +1,49 @@
+.PreviewWidth {
+    height: 100%;
+    width: 100%;
+    background: #31363a;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.HeaderPreviewWidth {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.ContentWidth {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.HalfContentWidth {
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+}
+
+.HalfContentWidthText {
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 0 1rem 0 0;
+}
+
+.HalfContentWidthImg {
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.FooterPreviewWidth {
+}

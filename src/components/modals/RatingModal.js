@@ -22,10 +22,7 @@ const RatingModal = ({show, hide, handleReport}) => {
     useEffect(() => setSum(result.reduce((a, b) => a + b)), [result])
 
     const confirm = () => {
-        const params = {
-            'result': result.toString()
-        }
-        RatingAPI(params)
+        RatingAPI({result: result.toString()})
         hide()
         handleReport()  // 跳转报告
     }

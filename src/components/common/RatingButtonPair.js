@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 
-const RatingButtonPair = ({resultIndex, result, setResult}) => {
-    const unselectedStyle = {background: '#bbbfc3', borderRadius: '.25rem', height: '20px', width: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer'}
-    const selectedStyle = {...unselectedStyle, background: '#418bfe', color: '#ffffff'}
+const unselectedStyle = {background: '#bbbfc3', borderRadius: '.25rem', height: '20px', width: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer'}
+const selectedStyle = {...unselectedStyle, background: '#418bfe', color: '#ffffff'}
 
+const RatingButtonPair = ({resultIndex, result, setResult}) => {
     const [selected, setSelected] = useState(0)
     const [style, setStyle] = useState([selectedStyle, unselectedStyle])
 
@@ -16,7 +16,9 @@ const RatingButtonPair = ({resultIndex, result, setResult}) => {
                 return item
             }
         })
-        setResult(newResult)
+        setResult(newResult);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selected])
 
     return (
