@@ -1,7 +1,18 @@
+.Search {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 120px 1fr;
+    grid-gap: 10px;
+}
+
 .ConditionPanel {
     background: #31363a;
+    padding: 2rem;
 }
 
 .ResultPanel {
     background: #31363a;
+    padding: 2rem;
+    text-align: center;
 }

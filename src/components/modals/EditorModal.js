@@ -57,8 +57,8 @@ const EditorModal = ({show, hide}) => {
     const handleNext = () => {
         if (index + 1 !== 4) setIndex(index + 1)
     }
-    const confirm = () => {
-    }
+    // const confirm = () => {
+    // }
 
     useEffect(() => console.log(data), [data])
 

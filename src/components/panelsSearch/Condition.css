@@ -1,0 +1,18 @@
+.Condition {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-size: 1.8rem;
+}
+
+.ConditionLeft {
+    width: 5%;
+    font-weight: 600;
+}
+
+.ConditionRight {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

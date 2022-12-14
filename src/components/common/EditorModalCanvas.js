@@ -97,7 +97,6 @@ const EditorModalCanvas = ({stageWH, srcList, index, dispatch}) => {
     };
     // draw lines (connect circles)
     useEffect(() => {
-        const img_no = index + 1
         if (circles.length < 2) return null // circles数量小于2不画线
 
         switch (mode) {
