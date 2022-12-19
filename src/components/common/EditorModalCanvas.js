@@ -46,7 +46,6 @@ const EditorModalCanvas = ({stageWH, srcList, index, dispatch}) => {
     // switch mode & save and clean circles, lines
     useEffect(() => index === 0 || index === 2 ? setMode('width') : setMode('redness'), [index])
     useEffect(() => {
-
         if (mode === 'width' && circles.length === 3) {
             let currentRecovery = {circles: [...circles], lines: lines}
             currentRecovery.circles.pop()
@@ -127,7 +126,7 @@ const EditorModalCanvas = ({stageWH, srcList, index, dispatch}) => {
     return (
         <Stage width={stageWH[0]} height={stageWH[1] * 1024 / 1536}>
             <Layer>
-                <Image image={image} width={stageWH[0]} height={stageWH[0] * 1024 / 1536} onClick={handleClickImage}/>
+                <Image image={image} width={stageWH[0]} height={stageWH[1] * 1024 / 1536} onClick={handleClickImage}/>
                 {circles.map((pos, i) => (<Circle key={i} x={pos[0]} y={pos[1]} fill={'white'} stroke={'#03a9fc'} radius={5}/>))}
                 {lines.map((pos, i) => (<Line key={i} points={[pos.from[0], pos.from[1], pos.to[0], pos.to[1]]} stroke={'white'}/>))}
             </Layer>

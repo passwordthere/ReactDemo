@@ -74,6 +74,24 @@ export function WidthAPI(params) {
     return res
 }
 
+export function WidthReAPI(params) {
+    let res = Axios({
+        url: '/width_redness/',
+        method: 'put',
+        params: params,
+    })
+    return res
+}
+
+export function WidthReManualAPI(data) {
+    let res = Axios({
+        url: '/width_redness/',
+        method: 'post',
+        data: data,
+    })
+    return res
+}
+
 export function RotationAPI(params) {
     let res = Axios({
         url: '/rotation/',

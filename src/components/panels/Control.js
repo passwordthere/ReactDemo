@@ -28,7 +28,7 @@ const Control = ({currentStatus, setCurrentStatus, eventTakingPhoto}) => {
     return (
         <div className='Control'>
             <div className='LeftControl'>
-                <Button onClick={handleLast} style={{borderRadius: '3rem', padding: '5px 20px', fontSize: '2rem'}}><StepBackwardOutlined/>上一步</Button>
+                <Button onClick={handleLast} style={{borderRadius: '3rem', padding: '5px 20px', fontSize: '2rem', display: 'flex', alignItems: 'center'}}><StepBackwardOutlined/>上一步</Button>
             </div>
 
             <div className='MidControl'>
@@ -36,7 +36,7 @@ const Control = ({currentStatus, setCurrentStatus, eventTakingPhoto}) => {
             </div>
 
             <div className='RightControl'>
-                <Button onClick={handleNext} style={{borderRadius: '3rem', padding: '5px 20px', fontSize: '2rem'}}>下一步<StepForwardOutlined/></Button>
+                <Button onClick={handleNext} style={{borderRadius: '3rem', padding: '5px 20px', fontSize: '2rem', display: 'flex', alignItems: 'center'}}>下一步<StepForwardOutlined/></Button>
             </div>
         </div>
     )
