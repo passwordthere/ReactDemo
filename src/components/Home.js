@@ -102,19 +102,30 @@ const Home = () => {
                 })
                 break
             case 'rotation':
-                for (let i=1; i <=9; i++) {
-                    setSelectedNum(i)
+                if (rotationPlot.every(i => i === null)) {
+                    for (let i=1; i <=9; i++) {
+                        setSelectedNum(i)
 
+                        params = {
+                            re: 0,
+                            id: i - 1,
+                        }
+                        RotationAPI(params).then(res => {
+                            setRotationImg(res.data.img)
+                            if (i === 9) setRotationPlot(res.data.plot)
+                        })
+
+                        await sleep(7)
+                    }
+                } else {
                     params = {
-                        re: 0,
-                        id: i - 1,
+                        re: 1,
+                        id: selectedNum - 1,
                     }
                     RotationAPI(params).then(res => {
                         setRotationImg(res.data.img)
-                        if (i === 9) setRotationPlot(res.data.plot)
+                        setRotationPlot(res.data.plot)
                     })
-
-                    await sleep(7)
                 }
 
             //    no default

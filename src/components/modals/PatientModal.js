@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './PatientModal.css'
 import {useState} from "react";
-import {CreatePatientAPI} from "../../api";
+import {CreatePatientAPI, ResetAPI} from "../../api";
 import {Message} from "../../utils/message";
 
 const PatientModal = ({show, hide}) => {
@@ -35,6 +35,7 @@ const PatientModal = ({show, hide}) => {
         }
         hide()
         Message.success({message: '创建成功!'});
+        ResetAPI()
     }
 
     const cancel = () => {

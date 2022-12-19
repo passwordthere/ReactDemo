@@ -68,7 +68,7 @@ const PreviewRotation = ({rotationImg, rotationPlot, selectedNum, setSelectedNum
                                             setSide(1);
                                             showModal()
                                         }}>
-                                            <PreviewWindow src={rotationImg[0][windowOrder[i] - 1]} selected={selectedNum === windowOrder[i]} fontS={'1rem'}/>
+                                            <PreviewWindow src={rotationImg[1][windowOrder[i] - 1]} selected={selectedNum === windowOrder[i]} fontS={'1rem'}/>
                                         </div>
                                     )
                                 })}

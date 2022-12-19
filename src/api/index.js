@@ -39,12 +39,19 @@ export function ChangeStatusAPI(params) {
 }
 
 export function LocateAPI(params) {
-    let res = Axios({
+    return Axios({
         url: '/start_locate/',
         method: 'get',
         params: params,
     })
-    return res
+}
+
+export function LocateAdjustAPI(params) {
+    return Axios({
+        url: '/adjust_locate/',
+        method: 'get',
+        params: params,
+    })
 }
 
 export function SurfaceAPI(params) {
@@ -117,4 +124,13 @@ export function ReportAPI(params) {
         params: params,
     });
     return res;
+}
+
+
+export function ResetAPI(params) {
+    return Axios({
+        url: '/reset/',
+        method: 'get',
+        params: params,
+    });
 }
