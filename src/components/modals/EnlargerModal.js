@@ -3,6 +3,7 @@ import './EnlargerModal.css'
 import {useEffect, useState} from "react";
 import {CaretLeftOutlined, CaretRightOutlined} from '@ant-design/icons';
 import baiyi from '../../assets/image/baiyi.jpg'
+import Links from "../../Links";
 
 const EnlargerModal = ({index, show, hide, side, rotationImg}) => {
     const [title, setTitle] = useState(null)
@@ -54,7 +55,7 @@ const EnlargerModal = ({index, show, hide, side, rotationImg}) => {
                     <CaretLeftOutlined style={{fontSize: '2.2rem', opacity: buttonHovers[0] ? '1' : '0.5'}}/>
                 </div>
                 <div style={{width: '60%', height: '80%', background: 'black', display: 'flex', justifyContent: 'center'}}>
-                    <img src={rotationImg[currentIndex] ? rotationImg[currentIndex] : baiyi} style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto'}} alt='zoom'/>
+                    <img src={rotationImg[currentIndex] ? Links().media + rotationImg[currentIndex] : baiyi} style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto'}} alt='zoom'/>
                 </div>
                 <div onClick={handleNext} onMouseEnter={() => button_mouse_enter(1)} onMouseLeave={() => button_mouse_enter(1)} style={{padding: '4rem', cursor: 'pointer'}}>
                     <CaretRightOutlined style={{fontSize: '2.2rem', opacity: buttonHovers[1] ? '1' : '0.5'}}/>
@@ -69,7 +70,7 @@ const EnlargerModal = ({index, show, hide, side, rotationImg}) => {
                              onMouseEnter={() => mouse_enter(i)}
                              onMouseLeave={() => mouse_enter(i)}
                              style={{background: 'black', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', cursor: 'pointer'}}>
-                            <img src={s ? s : baiyi} style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto', opacity: currentIndex === i ? '1' : hovers[i] ? '1' : '0.5'}} alt='thumbnail'/>
+                            <img src={s ? Links().media + s : baiyi} style={{maxWidth: '100%', maxHeight: '100%', margin: 'auto', opacity: currentIndex === i ? '1' : hovers[i] ? '1' : '0.5'}} alt='thumbnail'/>
                         </div>
                     )
                 })}
