@@ -55,37 +55,45 @@ const PatientModal = ({show, hide}) => {
                 <div className='PatientModalBody'>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">姓名</Form.Label>
-                        <Col sm="8"><Form.Control style={InputStyle} value={name} onChange={(e) => {
-                            setName(e.target.value)
-                        }} type="textarea" autoFocus/></Col>
+                        <Col sm="8">
+                            <Form.Control style={InputStyle} value={name} onChange={(e) => {
+                                setName(e.target.value)
+                            }} type="textarea" autoFocus/>
+                        </Col>
                     </Form.Group>
 
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">年龄</Form.Label>
-                        <Col sm="8"><Form.Control style={InputStyle} value={age} onChange={(e) => {
-                            setAge(e.target.value)
-                        }} type="textarea"/></Col>
+                        <Col sm="8">
+                            <Form.Control style={InputStyle} value={age} onChange={(e) => {
+                                setAge(e.target.value)
+                            }} type="textarea"/>
+                        </Col>
                     </Form.Group>
 
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">性别</Form.Label>
-                        <Col sm="8"><Form.Control style={InputStyle} value={gender} onChange={(e) => {
-                            setGender(e.target.value)
-                        }} type="textarea"/></Col>
+                        <Col sm="8">
+                            <Form.Control style={InputStyle} value={gender} onChange={(e) => {
+                                setGender(e.target.value)
+                            }} type="textarea"/>
+                        </Col>
                     </Form.Group>
 
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">身份证</Form.Label>
                         <Col sm="8"><Form.Control style={InputStyle} value={id} onChange={(e) => {
                             setID(e.target.value)
-                        }} type="textarea"/></Col>
+                        }} type="textarea"/>
+                        </Col>
                     </Form.Group>
 
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">创建医生</Form.Label>
                         <Col sm="8"><Form.Control style={InputStyle} value={doctor} onChange={(e) => {
                             setDoctor(e.target.value)
-                        }} type="textarea"/></Col>
+                        }} type="textarea"/>
+                        </Col>
                     </Form.Group>
                 </div>
 

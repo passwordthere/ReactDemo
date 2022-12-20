@@ -10,6 +10,21 @@ import {ChangeStatusAPI, LocateAPI, ProptosisAPI, ReportAPI, RotationAPI, Surfac
 import PreviewRotation from "./panels/PreviewRotation";
 import PreviewWidth from "./panels/PreviewWidth";
 
+import audioRotation1 from "../assets/audio/rotation0.mp4";
+import audioRotation2 from "../assets/audio/rotation1.mp4";
+import audioRotation3 from "../assets/audio/rotation2.mp4";
+import audioRotation4 from "../assets/audio/rotation3.mp4";
+import audioRotation5 from "../assets/audio/rotation4.mp4";
+import audioRotation6 from "../assets/audio/rotation5.mp4";
+import audioRotation7 from "../assets/audio/rotation6.mp4";
+import audioRotation8 from "../assets/audio/rotation7.mp4";
+import audioRotation9 from "../assets/audio/rotation8.mp4";
+import audioSurface from "../assets/audio/surface.mp4";
+import audioWidth from "../assets/audio/width_redness.mp4";
+import audioLeft from "../assets/audio/audioLeft.mp4";
+import audioRight from "../assets/audio/audioRight.mp4";
+import audioReport from "../assets/audio/report.mp4";
+
 const sleep = (s) => {
     return new Promise(resolve => setTimeout(resolve, s * 1000))
 }
@@ -62,6 +77,7 @@ const Home = () => {
             case statusList[5]:
                 break
             case statusList[6]:
+                new Audio(audioReport).play()
                 ReportAPI().then(res => setReport(res.data.pdf))
                 break
 
@@ -78,12 +94,14 @@ const Home = () => {
                 })
                 break
             case 'surface':
+                new Audio(audioSurface).play()
                 SurfaceAPI().then(res => {
                     setSurfaceImg(res.data.img)
                     setCurrentPreviewImg(res.data.img)
                 })
                 break
             case 'proptosis':
+                selectedNum === 1 ? new Audio(audioRight).play() : new Audio(audioLeft).play()
                 params = {
                     side: selectedNum === 1 ? 'od' : 'os'
                 }
@@ -94,6 +112,7 @@ const Home = () => {
                 })
                 break
             case 'width':
+                new Audio(audioWidth).play()
                 WidthAPI().then(res => {
                     setWidthImg(res.data.img.width)
                     setWidthRet(res.data.ret.width)
@@ -102,10 +121,11 @@ const Home = () => {
                 })
                 break
             case 'rotation':
+                const sounds = [audioRotation1, audioRotation2, audioRotation3, audioRotation4, audioRotation5, audioRotation6, audioRotation7, audioRotation8, audioRotation9, ]
                 if (rotationPlot.every(i => i === null)) {
                     for (let i=1; i <=9; i++) {
                         setSelectedNum(i)
-
+                        new Audio(sounds[i - 1]).play()
                         params = {
                             re: 0,
                             id: i - 1,
@@ -118,6 +138,7 @@ const Home = () => {
                         await sleep(7)
                     }
                 } else {
+                    new Audio(sounds[selectedNum - 1]).play()
                     params = {
                         re: 1,
                         id: selectedNum - 1,
@@ -127,7 +148,6 @@ const Home = () => {
                         setRotationPlot(res.data.plot)
                     })
                 }
-
             //    no default
         }
     }

@@ -28,6 +28,15 @@ export function CreatePatientAPI(data) {
     return res
 }
 
+export function ListPatientAPI(params) {
+    const res = Axios({
+        url: '/patients/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
 // STATUS
 export function ChangeStatusAPI(params) {
     let res = Axios({

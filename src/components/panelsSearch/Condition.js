@@ -2,11 +2,13 @@ import './Condition.css'
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {Button} from "react-bootstrap";
+import {ListPatientAPI} from "../../api";
 
 const InputStyle = {
     background: '#5a5e61',
-    border: '1px solid #999',
+    // border: '1px solid #999',
     width: '18rem',
     height: '4rem',
     // padding: '1rem 2rem',
@@ -14,8 +16,28 @@ const InputStyle = {
     color: '#cecece',
 }
 
-const Condition = () => {
+const Condition = ({setRows}) => {
     const [name, setName] = useState('')
+    const [patientNo, setPatientNo] = useState('')
+    const [date, setDate] = useState('')
+
+    const handleQuery = () => {
+        const dateList = date.split('-')
+        const params = {
+            name: name,
+            patient_no: patientNo,
+            year: dateList[0],
+            month: dateList[1],
+            day: dateList[2]
+        }
+        ListPatientAPI(params).then(res => {
+            setRows(res)
+        })
+    }
+
+    useEffect(() => {
+        ListPatientAPI().then(res => setRows(res))
+    }, [])
 
     return (
         <div className={'Condition'}>
@@ -30,22 +52,21 @@ const Condition = () => {
 
                 <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm="4">门诊号</Form.Label>
-                    <Col sm="8"><Form.Control style={InputStyle} value={name} onChange={(e) => {
-                        setName(e.target.value)
+                    <Col sm="8"><Form.Control style={InputStyle} value={patientNo} onChange={(e) => {
+                        setPatientNo(e.target.value)
                     }} type="textarea" autoFocus/></Col>
                 </Form.Group>
 
                 <Form.Group as={Row} className="mb-3">
                     <Form.Label column sm="4">检测时间</Form.Label>
-                    <Col sm="8"><Form.Control style={InputStyle} value={name} onChange={(e) => {
-                        setName(e.target.value)
-                    }} type="textarea" autoFocus/></Col>
+                    <Col sm="8"><Form.Control style={InputStyle} value={date} onChange={(e) => {
+                        setDate(e.target.value)
+                    }} type="date" autoFocus/></Col>
                 </Form.Group>
 
-                {/*<div>姓名</div>*/}
-                {/*<div>门诊号</div>*/}
-                {/*<div>检测时间</div>*/}
-                <div>查询</div>
+                <Button onClick={handleQuery} style={{fontSize: '1.8rem', padding: '.5rem 5rem'}} type="submit" className="mb-2">
+                    查询
+                </Button>
             </div>
         </div>
     )
