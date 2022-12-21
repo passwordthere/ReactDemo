@@ -32,7 +32,7 @@ const Preview = ({currentStatus, currentPreviewImg, proptosisRet, selectedNum, s
                     </div>
                 ) : (
                     <div className='FooterTag'>
-                        <div className='FooterTagHeader'><BulbOutlined/> Tips：双击图像区域重拍</div>
+                        {/*<div className='FooterTagHeader'><BulbOutlined/> Tips：双击图像区域重拍</div>*/}
                     </div>
                 )}
             </div>
