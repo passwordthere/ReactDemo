@@ -25,16 +25,14 @@ const PatientModal = ({show, hide}) => {
             age: age,
             gender: gender,
             ID_num: id,
-            doctor: doctor
+            doctor: doctor,
         }
-        const res = CreatePatientAPI(data)
-        console.log(res)
-        if (res.code === -1) {
-            Message.error({message: res.message});
-            return;
+        for (let dataKey in data) {
+            if (!data[`${dataKey}`]) delete data[`${dataKey}`]
         }
+        CreatePatientAPI(data)
         hide()
-        Message.success({message: '创建成功!'});
+        Message.success({message: '创建成功! 等待仪器复位'});
         ResetAPI()
     }
 
@@ -97,7 +95,7 @@ const PatientModal = ({show, hide}) => {
                     </Form.Group>
                 </div>
 
-                <div style={{display: 'flex', justifyContent: 'flex-end', gap: '20px', padding: '2rem'}}>
+                <div style={{display: 'flex', justifyContent: 'flex-end', gap: '20px', padding: '0 2rem 2rem 2rem'}}>
                     <div onClick={cancel} className='PatientCancel'>取消</div>
                     <div onClick={confirm} className='PatientConfirm'>确定</div>
                 </div>
