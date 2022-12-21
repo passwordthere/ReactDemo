@@ -19,7 +19,7 @@ const Result = ({rows}) => {
                     </tr>
                     </thead>
                     <tbody style={{fontSize: '1.6rem', background: '#505050'}}>
-                    {rows.slice(page - 1, 11).map((tr, i) => {
+                    {rows.slice(11 * (page - 1), 11 * page).map((tr, i) => {
                         const validRows = [tr.patient_no, tr.name, tr.gender, tr.age, tr.updated_at, tr.department]
                         return (
                             <tr key={i}>

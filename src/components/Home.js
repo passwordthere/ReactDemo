@@ -48,7 +48,7 @@ const Home = () => {
     const [rednessRet, setRednessRet] = useState([null, null])
     const [rotationImg, setRotationImg] = useState([[null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null]])
     const [rotationPlot, setRotationPlot] = useState([null, null])
-    const [report, setReport] = useState(null)
+    const [report, setReport] = useState([null, null])
 
     const [currentPreviewImg, setCurrentPreviewImg] = useState(locateImg)
 
@@ -78,7 +78,7 @@ const Home = () => {
                 break
             case statusList[6]:
                 new Audio(audioReport).play()
-                ReportAPI().then(res => setReport(res.data.pdf))
+                if (!report) ReportAPI().then(res => setReport(res.data.pdf))
                 break
 
             //    no default
@@ -154,14 +154,14 @@ const Home = () => {
 
     useEffect(() => {
         if (surfaceImg || proptosisRet || widthRet || rednessRet || rotationImg || rotationPlot) {
-            console.log('生成报告啦')
+            ReportAPI().then(res => setReport(res.data.png))
         }
-    }, [surfaceImg, proptosisRet, widthRet, rednessRet, rotationImg, rotationPlot])
+    }, [surfaceImg, proptosisRet, widthRet, rednessRet, rotationPlot])
 
     return (
         <div className='Home'>
             <div className='StatusPanel'>
-                <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} finishedStatus={finishedStatus}/>
+                <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} finishedStatus={finishedStatus} setReport={setReport}/>
             </div>
             <div className='Wrapper'>
                 <div className='Wrapper1'>

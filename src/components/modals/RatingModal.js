@@ -1,10 +1,10 @@
 import Modal from 'react-bootstrap/Modal';
 import './RatingModal.css'
 import {useEffect, useState} from "react";
-import {RatingAPI} from "../../api";
+import {RatingAPI, ReportAPI} from "../../api";
 import RatingButtonPair from "../common/RatingButtonPair";
 
-const RatingModal = ({show, hide, handleReport}) => {
+const RatingModal = ({show, hide, handleReport, setReport}) => {
     const ratingList = [
         '自发性眼眶疼痛',
         '眼球运动诱发疼痛',
@@ -22,7 +22,9 @@ const RatingModal = ({show, hide, handleReport}) => {
     useEffect(() => setSum(result.reduce((a, b) => a + b)), [result])
 
     const confirm = () => {
-        RatingAPI({result: result.toString()})
+        RatingAPI({result: result.toString()}).then(res => {
+            if (res.code === 0) ReportAPI().then(res => setReport(res.data.png))
+        })
         hide()
         handleReport()  // 跳转报告
     }

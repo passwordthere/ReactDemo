@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import RatingModal from "../modals/RatingModal";
 import {statusList} from "../Home";
 
-const Status = ({currentStatus, setCurrentStatus, finishedStatus}) => {
+const Status = ({currentStatus, setCurrentStatus, finishedStatus, setReport}) => {
     const handleLocating = () => {
         setCurrentStatus(statusList[0])
     }
@@ -48,7 +48,7 @@ const Status = ({currentStatus, setCurrentStatus, finishedStatus}) => {
                 <StatusButton round text='报告' current={currentStatus === statusList[6]} handleClick={handleReport}/>
             </div>
 
-            {modalVisible && (<RatingModal show={showModal} hide={hideModal} handleReport={handleReport}/>)}
+            {modalVisible && (<RatingModal show={showModal} hide={hideModal} handleReport={handleReport} setReport={setReport}/>)}
         </>
     )
 }

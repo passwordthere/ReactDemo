@@ -135,6 +135,15 @@ export function ReportAPI(params) {
     return res;
 }
 
+export function ReportSaveAPI(params) {
+    let res = Axios({
+        url: '/save/',
+        method: 'get',
+        params: params,
+    });
+    return res;
+}
+
 
 export function ResetAPI(params) {
     return Axios({
