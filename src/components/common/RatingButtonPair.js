@@ -4,7 +4,7 @@ const unselectedStyle = {background: '#bbbfc3', borderRadius: '.25rem', height: 
 const selectedStyle = {...unselectedStyle, background: '#418bfe', color: '#ffffff'}
 
 const RatingButtonPair = ({resultIndex, result, setResult}) => {
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState(result[resultIndex])
     const [style, setStyle] = useState([selectedStyle, unselectedStyle])
 
     useEffect(() => selected === 0 ? setStyle([selectedStyle, unselectedStyle]) : setStyle([unselectedStyle, selectedStyle]), [selected])

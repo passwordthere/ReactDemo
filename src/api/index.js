@@ -63,6 +63,14 @@ export function LocateAdjustAPI(params) {
     })
 }
 
+export function LocateConfirmAPI(params) {
+    return Axios({
+        url: '/confirm_locate/',
+        method: 'get',
+        params: params,
+    })
+}
+
 export function SurfaceAPI(params) {
     let res = Axios({
         url: '/surface/',

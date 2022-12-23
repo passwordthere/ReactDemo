@@ -25,7 +25,7 @@ import audioLeft from "../assets/audio/audioLeft.mp4";
 import audioRight from "../assets/audio/audioRight.mp4";
 import audioReport from "../assets/audio/report.mp4";
 
-const sleep = (s) => {
+export const sleep = (s) => {
     return new Promise(resolve => setTimeout(resolve, s * 1000))
 }
 
@@ -38,6 +38,8 @@ const Home = () => {
 
     const [selectedNum, setSelectedNum] = useState(1)
 
+    const [hasLocated, setHasLocated] = useState(false)
+
     const [locateImg, setLocateImg] = useState([null, null])
     const [surfaceImg, setSurfaceImg] = useState([null, null])
     const [proptosisImg, setProptosisImg] = useState([null, null])
@@ -48,6 +50,7 @@ const Home = () => {
     const [rednessRet, setRednessRet] = useState([null, null])
     const [rotationImg, setRotationImg] = useState([[null, null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null, null]])
     const [rotationPlot, setRotationPlot] = useState([null, null])
+    const [ratingResult, setRatingResult] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [report, setReport] = useState([null, null])
 
     const [currentPreviewImg, setCurrentPreviewImg] = useState(locateImg)
@@ -92,6 +95,7 @@ const Home = () => {
                     setLocateImg(res.data.img)
                     setCurrentPreviewImg(res.data.img)
                 })
+                setHasLocated(true)
                 break
             case 'surface':
                 new Audio(audioSurface).play()
@@ -161,7 +165,8 @@ const Home = () => {
     return (
         <div className='Home'>
             <div className='StatusPanel'>
-                <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} finishedStatus={finishedStatus} setReport={setReport}/>
+                <Status currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} finishedStatus={finishedStatus}
+                        result={ratingResult} setResult={setRatingResult} setReport={setReport} />
             </div>
             <div className='Wrapper'>
                 <div className='Wrapper1'>
@@ -169,7 +174,7 @@ const Home = () => {
                         {currentStatus === statusList[6] ? <Report report={report} setReport={setReport}/> : <Camera/>}
                     </div>
                     <div className='WrapperControl'>
-                        {currentStatus === statusList[0] ? <ControlLocate eventTakingPhoto={eventTakingPhoto}/> :
+                        {currentStatus === statusList[0] ? <ControlLocate eventTakingPhoto={eventTakingPhoto} hasLocated={hasLocated}/> :
                             <Control currentStatus={currentStatus} setCurrentStatus={setCurrentStatus}
                                      eventTakingPhoto={eventTakingPhoto}/>}
                     </div>

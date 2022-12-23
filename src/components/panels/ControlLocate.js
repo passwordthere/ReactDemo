@@ -2,11 +2,12 @@ import './ControlLocate.css'
 import Button from 'react-bootstrap/Button';
 import Form from "react-bootstrap/Form";
 import {CaretDownOutlined, CaretLeftOutlined, CaretRightOutlined, CaretUpOutlined} from '@ant-design/icons';
-import {LocateAdjustAPI} from "../../api";
+import {LocateAdjustAPI, LocateConfirmAPI} from "../../api";
 import {useEffect, useState} from "react";
+import {Message} from "../../utils/message";
 
 
-const ControlLocate = ({eventTakingPhoto}) => {
+const ControlLocate = ({eventTakingPhoto, hasLocated}) => {
     const buttonStyle = {
         borderRadius: '1.2rem',
         width: '37%',
@@ -48,6 +49,15 @@ const ControlLocate = ({eventTakingPhoto}) => {
         }
     }
 
+    const handleConfirm = () => {
+        LocateConfirmAPI().then(res => {
+            setPosEye(res.data.pos[0])
+            setPosJaw(res.data.pos[1])
+            setPosForehead(res.data.pos[2])
+            Message.success({message: '确认成功!'})
+        })
+    }
+
     // useEffect(() => {
     //     LocateAdjustAPI({action: 'od_stop'}).then(res => setPosEye(res.data.pos))
     //     LocateAdjustAPI({action: 'jaw_stop'}).then(res => setPosJaw(res.data.pos))
@@ -75,7 +85,7 @@ const ControlLocate = ({eventTakingPhoto}) => {
                 </div>
             </div>
             <div className='MidControlLocate'>
-                <Button onClick={eventTakingPhoto} className="rounded-circle" style={{padding: '40px', fontSize: '2.8rem'}}>拍摄</Button>
+                {hasLocated ? <Button onClick={handleConfirm} className="rounded-circle" style={{padding: '40px', fontSize: '2.8rem'}}>确认</Button> : <Button onClick={eventTakingPhoto} className="rounded-circle" style={{padding: '40px', fontSize: '2.8rem'}}>拍摄</Button>}
             </div>
             <div className='RightControlLocate'>
                 <div style={{height: '80%', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '20px', fontSize: '1.6rem', fontWeight: '600'}}>

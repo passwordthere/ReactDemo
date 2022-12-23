@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {RatingAPI, ReportAPI} from "../../api";
 import RatingButtonPair from "../common/RatingButtonPair";
 
-const RatingModal = ({show, hide, handleReport, setReport}) => {
+const RatingModal = ({show, hide, result, setResult, handleReport, setReport}) => {
     const ratingList = [
         '自发性眼眶疼痛',
         '眼球运动诱发疼痛',
@@ -17,7 +17,7 @@ const RatingModal = ({show, hide, handleReport, setReport}) => {
         '眼球运动下降≤8°',
         '视力下降≥1行',
     ]
-    const [result, setResult] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    // const [result, setResult] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     const [sum, setSum] = useState(0)
     useEffect(() => setSum(result.reduce((a, b) => a + b)), [result])
 

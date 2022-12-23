@@ -6,6 +6,7 @@ import './PatientModal.css'
 import {useState} from "react";
 import {CreatePatientAPI, ResetAPI} from "../../api";
 import {Message} from "../../utils/message";
+import {sleep} from "../Home";
 
 const PatientModal = ({show, hide}) => {
     const InputStyle = {
@@ -30,10 +31,17 @@ const PatientModal = ({show, hide}) => {
         for (let dataKey in data) {
             if (!data[`${dataKey}`]) delete data[`${dataKey}`]
         }
-        CreatePatientAPI(data)
-        hide()
-        Message.success({message: '创建成功! 等待仪器复位'});
-        ResetAPI()
+        ResetAPI().then(res => {
+            CreatePatientAPI(data).then(_ => {
+                if (res.code === 0) {
+                    hide()
+                    Message.success({message: '创建成功! 等待仪器复位'});
+                    sleep(2).then(_ => window.location.reload())
+                }
+                return
+            })
+            return
+        })
     }
 
     const cancel = () => {
