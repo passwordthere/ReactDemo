@@ -22,6 +22,7 @@ export default class Login extends React.Component {
                 password: this.state.password,
             })
             this.props.history.push({state: this.state.UserName, pathname: "/main"});
+            localStorage.setItem('username', this.state.UserName)
         } catch (e) {
             console.log(e);
             this.setState({loginFeedback: "密码错误或用户名错误"});

@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './PatientModal.css'
-import {useState} from "react";
-import {CreatePatientAPI, ResetAPI} from "../../api";
+import {useEffect, useState} from "react";
+import {PatientCreateAPI, DoctorListAPI, ResetAPI} from "../../api";
 import {Message} from "../../utils/message";
 import {sleep} from "../Home";
 
@@ -21,6 +21,10 @@ const PatientModal = ({show, hide}) => {
     const [doctor, setDoctor] = useState('');
 
     const confirm = () => {
+        if (id === '') {
+            Message.warning({message: '请输入有效身份证'})
+            return
+        }
         const data = {
             name: name,
             age: age,
@@ -31,22 +35,30 @@ const PatientModal = ({show, hide}) => {
         for (let dataKey in data) {
             if (!data[`${dataKey}`]) delete data[`${dataKey}`]
         }
-        ResetAPI().then(res => {
-            CreatePatientAPI(data).then(_ => {
-                if (res.code === 0) {
+        // ResetAPI().then(res => {
+            PatientCreateAPI(data).then(_ => {
+                // if (res.code === 0) {
                     hide()
                     Message.success({message: '创建成功! 等待仪器复位'});
                     sleep(2).then(_ => window.location.reload())
-                }
+                // }
                 return
             })
             return
-        })
+        // })
     }
 
     const cancel = () => {
         hide()
     }
+
+    useEffect(() => {
+        const username = localStorage.getItem('username')
+        DoctorListAPI({username: username}).then(res => {
+            const {id} = res[0]
+            setDoctor(id)
+        })
+    }, [])
 
     return (
         <Modal size={'lg'} show={show} onHide={hide} backdrop="static" keyboard={false} centered>
@@ -96,9 +108,9 @@ const PatientModal = ({show, hide}) => {
 
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">创建医生</Form.Label>
-                        <Col sm="8"><Form.Control style={InputStyle} value={doctor} onChange={(e) => {
+                        <Col sm="8"><Form.Control style={InputStyle} value={localStorage.getItem('username')} onChange={(e) => {
                             setDoctor(e.target.value)
-                        }} type="textarea"/>
+                        }} type="textarea" disabled/>
                         </Col>
                     </Form.Group>
                 </div>

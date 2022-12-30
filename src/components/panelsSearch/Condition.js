@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {useEffect, useState} from "react";
 import {Button} from "react-bootstrap";
-import {ListPatientAPI} from "../../api";
+import {DetectListAPI} from "../../api";
 
 const InputStyle = {
     background: '#5a5e61',
@@ -30,13 +30,15 @@ const Condition = ({setRows}) => {
             month: dateList[1],
             day: dateList[2]
         }
-        ListPatientAPI(params).then(res => {
+        DetectListAPI(params).then(res => {
             setRows(res)
         })
     }
 
     useEffect(() => {
-        ListPatientAPI().then(res => setRows(res))
+        DetectListAPI().then(res => {
+            setRows(res)
+        })
     }, [])
 
     return (

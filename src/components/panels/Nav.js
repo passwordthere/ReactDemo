@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { withRouter } from 'react-router-dom';
 import './Nav.css'
 import brand from '../../assets/image/brand.png'
@@ -9,6 +9,7 @@ import PatientModal from "../modals/PatientModal";
 
 const Nav = ({history, currentNav, setCurrentNav}) => {
     const [hover, setHover] = useState(false)
+    const [username, setUsername] = useState('Admin')
 
     const handle_home = () => {
         setCurrentNav('home')
@@ -38,6 +39,8 @@ const Nav = ({history, currentNav, setCurrentNav}) => {
         window.location.reload();
     }
 
+    useEffect(() => setUsername(localStorage.getItem('username')), [])
+
     return (
         <div className='Nav'>
             <div className='LogoAndButtons'>
@@ -50,7 +53,7 @@ const Nav = ({history, currentNav, setCurrentNav}) => {
             <div className='Avatar' onMouseEnter={mouse_enter} onMouseLeave={mouse_leave}>
                 <img src={avatar} alt='avatar.png' height='90%' />
                 <div style={{display: "inline-block", padding: "1.5rem", fontSize: "1.5rem", fontWeight: "600"}}>
-                    Admin
+                    {username}
                 </div>
                 {hover && <div className='AvatarMenu' onMouseEnter={mouse_enter} onMouseLeave={mouse_leave} onClick={handle_logout}>退出登录</div>}
             </div>

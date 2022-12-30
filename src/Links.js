@@ -11,12 +11,14 @@ let Links = ()=>{
   if(env === "dev"){
     return {
       base: "http://192.168.59.83:8000/api/",
-      media: "http://192.168.59.83:8000/media/"
+      media: "http://192.168.59.83:8000/media/",
+      patients: "http://192.168.59.83:8000/patients/"
     }
   }else{
     return {
       base: "http://localhost:8000/api/",
-      media: "http://localhost:8000/media/"
+      media: "http://localhost:8000/media/",
+      patients: "http://localhost:8000/patients/"
     }
   }
 };

@@ -1,15 +1,6 @@
 import Axios from './axios'
 
 
-export function LoginAPI(data) {
-    const res = Axios({
-        url: '/login/',
-        method: 'post',
-        data: data,
-    })
-    return res
-}
-
 export function RegisterAPI(data) {
     const res = Axios({
         url: '/register/',
@@ -19,16 +10,24 @@ export function RegisterAPI(data) {
     return res
 }
 
-export function CreatePatientAPI(data) {
+export function LoginAPI(data) {
     const res = Axios({
-        url: '/patients/',
+        url: '/login/',
         method: 'post',
         data: data,
     })
     return res
 }
 
-export function ListPatientAPI(params) {
+export function DoctorListAPI(params) {
+    return Axios({
+        url: '/doctors/',
+        method: 'get',
+        params: params,
+    })
+}
+
+export function PatientListAPI(params) {
     const res = Axios({
         url: '/patients/',
         method: 'get',
@@ -37,7 +36,31 @@ export function ListPatientAPI(params) {
     return res
 }
 
-// STATUS
+export function PatientCreateAPI(data) {
+    const res = Axios({
+        url: '/patients/',
+        method: 'post',
+        data: data,
+    })
+    return res
+}
+
+export function DetectListAPI(params) {
+    const res = Axios({
+        url: '/detects/',
+        method: 'get',
+        params: params,
+    })
+    return res
+}
+
+/*
+*
+*
+*
+* */
+
+
 export function ChangeStatusAPI(params) {
     let res = Axios({
         url: '/change_step/',

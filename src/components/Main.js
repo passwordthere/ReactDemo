@@ -10,13 +10,11 @@ if (process.env.NODE_ENV === "production") {
 
 const Main = () => {
     const [currentNav, setCurrentNav] = useState('home')
-
     return (
         <div className='MainPanel'>
             <div className='NavPanel'>
                 <Nav currentNav={currentNav} setCurrentNav={setCurrentNav}/>
             </div>
-
             <div className='ContentPanel'>
                 {currentNav === 'search' ? (<Search/>) : (<Home/>)}
             </div>
